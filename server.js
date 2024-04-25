@@ -12,7 +12,12 @@ const app = express()
 
 app.get('/server', (request, response) => {
     response.setHeader('Access-Control-Allow-Origin', '*')
-    response.send('Hello World!')
+    response.send('Hello World get AJAX!')
+})
+
+app.post('/server', (request, response) => {
+    response.setHeader('Access-Control-Allow-Origin', '*')
+    response.send('Hello World post AJAX!')
 })
 
 app.listen(8000, () => {
