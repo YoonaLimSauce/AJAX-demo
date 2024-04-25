@@ -8,3 +8,8 @@
 -->
 # AJAX-demo
 This is a demo project for AJAX.
+## Chapter1
+使用node.js搭建一个简单的HTTP服务器
+## Chapter2
+使用express.js搭建一个简单的HTTP服务器
+使用AJAX发送HTTP请求
