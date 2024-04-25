@@ -26,10 +26,7 @@
             xhr.send()
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
-                    console.log(xhr.status)
-                    console.log(xhr.statusText)
-                    console.log(xhr.getAllResponseHeaders())
-                    console.log(xhr.responseText)
+                    result.innerHTML = xhr.response
                 }
             }
         }
