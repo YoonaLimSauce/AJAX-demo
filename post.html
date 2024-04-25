@@ -2,7 +2,7 @@
  * @Author: Yoona Lim miraclefishleong@gmail.com
  * @Date: 2024-04-25 23:26:33
  * @LastEditors: Yoona Lim miraclefishleong@gmail.com
- * @LastEditTime: 2024-04-25 23:36:06
+ * @LastEditTime: 2024-04-25 23:51:52
  * @FilePath: \AJAX-demo\post.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -28,7 +28,8 @@
         result.addEventListener('mouseover', () => {
             const xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://127.0.0.1:8000/server')
-            xhr.send()
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            xhr.send('username=admin&password=123456')
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
                     result.innerHTML = xhr.response;
