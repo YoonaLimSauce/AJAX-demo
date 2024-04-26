@@ -1,11 +1,12 @@
 <!--
  * @Author: Yoona Lim miraclefishleong@gmail.com
- * @Date: 2024-04-25 23:26:33
+ * @Date: 2024-04-26 23:22:17
  * @LastEditors: Yoona Lim miraclefishleong@gmail.com
- * @LastEditTime: 2024-04-26 23:28:22
- * @FilePath: \AJAX-demo\post.html
+ * @LastEditTime: 2024-04-26 23:23:12
+ * @FilePath: \AJAX-demo\parseJSON.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,30 +16,28 @@
     <style>
         #result {
             width: 600px;
-            height: 300px;
-            border: solid 3px yellow;
+            height: 400px;
+            border: solid 3px blue;
         }
     </style>
 </head>
 <body>
     <div id="result"></div>
-
     <script>
-        const result = document.getElementById('result');
-        result.addEventListener('mouseover', () => {
+        window.onkeydown = function (e) {
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://127.0.0.1:8000/server')
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-            xhr.send('username=admin&password=123456')
-            xhr.onreadystatechange = function() {
+            xhr.responseType = 'json';
+            const result = document.getElementById('result');
+            xhr.open('GET', 'http://127.0.0.1:8000/json-server');
+            xhr.send();
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
+                    // result.innerHTML = JSON.stringify(xhr.response);
+                    console.log(xhr.response)
                     result.innerHTML = xhr.response.name;
                 }
             }
-        })
-        result.addEventListener('mouseout', () => {
-            result.innerHTML = '';
-        })
+        }
     </script>
 </body>
 </html>
