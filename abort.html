@@ -1,0 +1,41 @@
+<!--
+ * @Author: Yoona Lim miraclefishleong@gmail.com
+ * @Date: 2024-04-27 11:44:48
+ * @LastEditors: Yoona Lim miraclefishleong@gmail.com
+ * @LastEditTime: 2024-04-27 11:47:26
+ * @FilePath: \AJAX-demo\abort.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击发送请求</button>
+    <button>点击取消请求</button>
+
+    <script>
+        const btn = document.getElementsByTagName('button');
+        const xhr = new XMLHttpRequest();
+
+        btn[0].addEventListener('click', function() {
+            xhr.open('GET', 'http://localhost:8000/delay');
+            xhr.send();
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
+                    console.log(xhr.response);
+                }
+            }
+        });
+
+        btn[1].addEventListener('click', function() {
+            xhr.abort();
+            console.log('请求已取消')
+        });
+    </script>
+</body>
+</html>
