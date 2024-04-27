@@ -1,0 +1,43 @@
+<!--
+ * @Author: Yoona Lim miraclefishleong@gmail.com
+ * @Date: 2024-04-27 11:54:56
+ * @LastEditors: Yoona Lim miraclefishleong@gmail.com
+ * @LastEditTime: 2024-04-27 12:16:36
+ * @FilePath: \AJAX-demo\repetitiveSend.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击发送</button>
+
+    <script>
+        const btns = document.querySelectorAll('button');
+        let x = null;
+        let isSending = false;
+
+        btns[0].onclick = () => {
+            if(isSending) {
+                x.abort();
+                console.log('取消发送');
+            }
+            x = new XMLHttpRequest();
+            x.open('GET', 'http://127.0.0.1:8000/delay');
+            x.send();
+            isSending= true;
+
+            x.onreadystatechange = function() {
+                if(x.readyState === 4 && x.status > 200 && x.status < 300) {
+                    console.log('response:', x.response);
+                    isSending = false;
+                }
+            }
+        };
+    </script>
+</body>
+</html>
