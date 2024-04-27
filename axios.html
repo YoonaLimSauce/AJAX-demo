@@ -47,6 +47,29 @@
                 }
             })
         }
+
+        btns[2].onclick = function() {
+            axios({
+                method: 'get',
+                url: 'http://localhost:8000/axios-server',
+                params: {
+                    name: 'axios'
+                },
+                headers: {
+                    name: 'axios AJAX'
+                },
+                data: {
+                    name: 'axios',
+                    time: 2024
+                }
+            }).then((result) => {
+                console.log(result)
+                console.log(result.status)
+                console.log(result.statusText)
+                console.log(result.headers)
+                console.log(result.data)
+            })
+        }
     </script>
 </body>
 </html>
