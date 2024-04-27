@@ -61,7 +61,7 @@ app.all('/ajax-server', (request, response) => {
     }
     response.send(JSON.stringify(data))
 })
-
+ 
 app.get('/axios-server', (request, response) => {
     response.setHeader('Access-Control-Allow-Origin', '*')
     response.setHeader('Access-Control-Allow-Headers', '*')
@@ -74,6 +74,17 @@ app.post('/axios-server', (request, response) => {
     response.setHeader('Access-Control-Allow-Headers', '*')
 
     response.send('Welcome to axios AJAX!')
+})
+
+app.all('/fetch-server', (request, response) => {
+    response.setHeader('Access-Control-Allow-Origin', '*')
+    response.setHeader('Access-Control-Allow-Headers', '*')
+
+    const data = {
+        name: '张敏洁',
+        gender: '女'
+    }
+    response.send(JSON.stringify(data))
 })
 
 app.listen(8000, () => {
