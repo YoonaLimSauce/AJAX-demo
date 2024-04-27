@@ -87,6 +87,15 @@ app.all('/fetch-server', (request, response) => {
     response.send(JSON.stringify(data))
 })
 
+app.all('/jsonp-server', (request, response) => {
+    const str = {
+        name: '张敏洁',
+        gender: '女'
+    }
+
+    response.send(`handle(${JSON.stringify(str)})`)
+})
+
 app.listen(8000, () => {
     console.log('Server is running at http://localhost:8000')
 })
