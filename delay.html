@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result {
+            width: 600px;
+            height: 400px;
+            border: solid 3px green;
+        }
+    </style>
+</head>
+<body>
+    <button>点击发送请求</button>
+    <div id="result"></div>
+
+    <script>
+        const btn = document.getElementsByTagName('button')[0];
+        const result = document.querySelector('#result');
+
+        btn.addEventListener('click', function() {
+            const xhr = new XMLHttpRequest();
+            xhr.timeout = 5000;
+            xhr.ontimeout = function() {
+                alert('请求超时');
+                result.innerHTML = '请求超时';
+            }
+            xhr.onerror = function() {
+                alert('请求失败');
+                result.innerHTML = '请求失败';
+            }
+
+            xhr.open('GET', 'http://127.0.0.1:8000/delay');
+            xhr.send();
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
+                    result.innerHTML = xhr.response;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
