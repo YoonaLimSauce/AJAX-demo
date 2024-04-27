@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin="anonymous" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <title>axios 发送 AJAX 请求</title>
+</head>
+<body>
+    <button>GET</button>
+    <button>POST</button>
+    <button>AJAX</button>
+
+    <script>
+        const btns = document.querySelectorAll('button');
+
+        axios.defaults.baseURL = 'http://localhost:8000';
+
+        btns[0].onclick = function() {
+            axios.get('/axios-server', {
+                params: {
+                    name: 'axios'
+                },
+                headers: {
+                    name: 'axios AJAX'
+                }
+            }).then((result) => {
+                console.log(result)
+            }).catch((err) => {
+                console.log(err)
+            });
+        }
+
+        btns[1].onclick = function() {
+            axios.post('/axios-server', {
+                name: 'axios',
+                time: 2024
+            }, {
+                params: {
+                    username: 'admin',
+                    password: '123456'
+                },
+                headers: {
+                    name: 'axios AJAX'
+                }
+            })
+        }
+    </script>
+</body>
+</html>
